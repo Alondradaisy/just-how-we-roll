@@ -31,56 +31,92 @@ const sortByNumber = function(arr) {
  * YOUR CODE BELOW *
  *******************/
 
-  let sixes = document.createElement('img');
-  sixes.src = "images/start/d6.png";
-  document.querySelector('#6d-button').appendChild(sixes);
+  let d6 = document.querySelector('#d6-roll');
+  let firstD6 = document.querySelector('#first-d-6-roll');
+  let secondD6 = document.querySelector('#second-d-6-roll');
+  let d12 = document.querySelector('#d12-roll');
+  let d20 = document.querySelector('#d20-roll');
+  let reset = document.querySelector('#reset-roll');
 
-
-
-  let doubleSixes = document.createElement('img');
-  doubleSixes.src = 'images/start/d6.png' + 'images/start/d6.png';
-  document.querySelector('#double-6d-buttons').appendChild(doubleSixes);
-
-  let twelves = document.createElement('img');
-  twelves.src = 'images/start/d12.jpeg';
-  document.querySelector('#d12-button').appendChild(twelves);
-
-  let twenties = document.createElement('img');
-  twentiesImg.src = 'images/start/d20.jpg';
-  document.querySelector('#d20-button').appendChild(twenties);
-
-
+  d6.src = 'images/start/d6.png';
+  firstD6.src = 'images/start/d6.png';
+  secondD6.src = 'images/start/d6.png';
+  d12.src = 'images/start/d12.jpeg';
+  d20.src = 'images/start/d20.jpg';
 /*******************
  * EVENT LISTENERS *
  *******************/
-const startingDice = document.querySelector('#d6'); 
-startingDice.addEventListener('click', startingDice);
-
-const startingDblSixes = document.querySelector('#double-d6');
-startingDblSixes.addEventListener('click', startingDblSixes);
-
-const startingTwelves = document.querySelector('#d12');
-startingTwelves.addEventListener('click', startingTwelves);
-
-const startingTwenties = document.querySelector('#d20');
-startingTwenties.addEventListener('click', startingTwenties);
+d6.addEventListener('click', handleD6Click); // called in the handle functions
+firstD6.addEventListener('click', handleFirstD6Click );
+secondD6.addEventListener('click', handleSecondD6Click);
+d12.addEventListener('click', handleD12Click);
+d20.addEventListener('click', handleD20Click);
+reset.addEventListener('click', handleResetClick);
 
 /******************
  * RESET FUNCTION *
  ******************/
 
-let sixes = [];
-const 6RollImg = document.querySelector('#d6-roll');
-6RollImg.addEventListener('click', function() ) {
-
+function handleResetClick() {
+  console.log('reset was clicked');
 }
 
 /****************************
  * CLICK HANDLING FUNCTIONS *
 ****************************/
 
-
+function handleD6Click() {
+  console.log('d6 was clicked');
+}
+function handleFirstD6Click() {
+  console.log('firstD6 was clicked');
+}
+function handleSecondD6Click() {
+  console.log('SecondD6 was clicked');
+}
+function handleD12Click() {
+  console.log('d12 was clicked');
+}
+function handleD20Click() {
+  console.log('d20 was clicked');
+}
 
 /****************
  * MATH SECTION *
  ****************/
+
+const mean = function(rolls) {
+  let sum = 0;
+  for (const roll of rolls) {
+    sum += roll;
+  }
+  return (sum / rolls.length).toFixed(2);
+}
+
+const median = function(rolls) {
+  const sorted = sortByNumber(rolls);
+  const middle = math.floor(sorted.length / 2)
+  if (sorted.length % 2 === 0) {
+    return mean([sorted[middle], sorted [middle -1]]);
+
+  }else {
+    return sorted[middle].toFixed(2);
+  }
+}
+
+const mode = function(rolls) {
+  const counts = {};
+  let modeNum = 'Discovering'
+  for (const rolls of rolls) {
+    if (roll in counts) {
+      count[roll]++;
+
+    } else {
+      counts[roll] = 1;
+    }
+  if (counts[modeNum] === undefined|| counts[roll] > counts[modeNum] )
+    modeNum = roll;
+  }
+  }
+  return modeNum;
+}
